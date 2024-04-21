@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="lib/fontawesome-free-6.2.0-web/css/all.css">
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet"  href="style.css">
+    <title>Lists</title>
+</head>
+<body class="body">
+       <div class="header">
+        <i  id="dl" class=" fa-solid fa-bars fa-3x"></i>
+        <h2 class="list-heading">All Lists</h>
+        </div>
+        
+        <div class="input-group">
+            <input type="text" name="text" id ="text" placeholder="Add a new list..." class="form-control"  aria-label="Add a new list..." aria-describedby="basic-addon2" > 
+            <div class="input-group-append">
+                <button id="add"  class="btn btn-success" type="button">Add</button>
+            </div>
+        </div> 
+        
+        <a id="downloadAnchor" style="display:none"></a>
+        <a id="redirect" style="display:none" href="task.html"></a>
+        
+        <div>
+            <ul id="list"></ul>
+        </div>
+
+<script src="index.js"></script>   
+</body>
+</html>
