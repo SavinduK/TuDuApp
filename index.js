@@ -15,6 +15,7 @@ if (SavedData){
 
 function deleteRecord(e){
     console.log(e.target.id)
+    List = JSON.parse(localStorage.getItem("key"))
     for (let i = 0; i<List.length;i++){
       if( `#${i}` == e.target.id){
         List.splice(i,1)
@@ -35,6 +36,7 @@ function redirectTo(e){
 
 addBtn.addEventListener('click',function(){
     console.log('clickd')
+    List = JSON.parse(localStorage.getItem("key"))
     let data = [textBox.value,[]]
         if (data[0]){
         List.push(data)
@@ -44,7 +46,8 @@ addBtn.addEventListener('click',function(){
 }) 
 
 exportBtn.addEventListener('click',function(){
-    console.log('clickd') 
+    console.log('clickd')
+    List = JSON.parse(localStorage.getItem("key"))
     let jsonData = List
     var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(jsonData));
     var dlAnchor = document.getElementById('downloadAnchor')
