@@ -54,7 +54,7 @@ Add, view, and delete tasks directly from a web interface, with all data stored 
   ---
 
   ## 🔗 Link
-  -URL = https://script.google.com/macros/s/AKfycbwqaFPhb40yxhk8uw1i8RQ61bUjzoZ92iyjg5EHwen0BANeTaLbH_YMaQtq7sUVhCOr8w/exec 
+- URL = https://script.google.com/macros/s/AKfycbwqaFPhb40yxhk8uw1i8RQ61bUjzoZ92iyjg5EHwen0BANeTaLbH_YMaQtq7sUVhCOr8w/exec 
 - Access permissions control who can use the app.  
 
 ---
