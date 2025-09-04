@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple To-Do</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container p-4">
+  <h2 class="mb-3">My Tasks</h2>
+
+  <div class="input-group mb-3">
+    <input type="text" id="title" placeholder="Add a new task..." class="form-control">
+    <button id="add" class="btn btn-success">Add</button>
+  </div>
+
+  <ul id="container" class="list-group"></ul>
+
+  <script>
+    document.getElementById("add").addEventListener("click", () => {
+      const title = document.getElementById("title").value.trim();
+      if (!title) return alert("Please enter a task");
+
+      google.script.run.withSuccessHandler(() => {
+        document.getElementById("title").value = "";
+        loadTasks();
+      }).addTask(title);
+    });
+
+    function loadTasks() {
+      google.script.run.withSuccessHandler((tasks) => {
+        const container = document.getElementById("container");
+        container.innerHTML = "";
+        tasks.forEach((task) => {
+          container.innerHTML += `
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              ${task.title}
+              <i class="fa-solid fa-trash text-danger" style="cursor:pointer;" onclick="deleteTask(${task.row})"></i>
+            </li>
+          `;
+        });
+      }).getTasks();
+    }
+
+    function deleteTask(row) {
+      if (confirm("Delete this task?")) {
+        google.script.run.withSuccessHandler(() => {
+          loadTasks();
+        }).deleteTask(row);
+      }
+    }
+
+    window.onload = loadTasks;
+  </script>
+</body>
+</html>
