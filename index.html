@@ -1,20 +1,133 @@
-<!DOCTYPE html>
+
+   <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Simple To-Do</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="container p-4">
-  <h2 class="mb-3">My Tasks</h2>
+  <style>
+    /* --- Reset and base --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-  <div class="input-group mb-3">
-    <input type="text" id="title" placeholder="Add a new task..." class="form-control">
-    <button id="add" class="btn btn-success">Add</button>
+    body {
+      background: #121212;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      transition: background 0.3s;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* --- Input section --- */
+    .input-group {
+      display: flex;
+      width: 100%;
+      max-width: 500px;
+      margin-bottom: 1.5rem;
+    }
+
+    #title {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px 0 0 8px;
+      font-size: 1rem;
+      background: #1f1f1f;
+      color: #f0f0f0;
+      outline: none;
+      transition: background 0.3s;
+    }
+
+    #title::placeholder {
+      color: #888;
+    }
+
+    #add {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 0 8px 8px 0;
+      background: #4caf50;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #add:hover {
+      background: #45a049;
+    }
+
+    /* --- Task list --- */
+    #container {
+      width: 100%;
+      max-width: 500px;
+      list-style: none;
+    }
+
+    #container li {
+      background: #1f1f1f;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    #container li:hover {
+      background: #292929;
+      transform: translateY(-2px);
+    }
+
+    #container i {
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    #container i:hover {
+      color: #ff5555;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      #title, #add {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2>My Tasks</h2>
+
+  <div class="input-group">
+    <input type="text" id="title" placeholder="Add a new task...">
+    <button id="add">Add</button>
   </div>
 
-  <ul id="container" class="list-group"></ul>
+  <ul id="container"></ul>
 
   <script>
     document.getElementById("add").addEventListener("click", () => {
@@ -33,9 +146,9 @@
         container.innerHTML = "";
         tasks.forEach((task) => {
           container.innerHTML += `
-            <li class="list-group-item d-flex justify-content-between align-items-center">
+            <li>
               ${task.title}
-              <i class="fa-solid fa-trash text-danger" style="cursor:pointer;" onclick="deleteTask(${task.row})"></i>
+              <i class="fa-solid fa-trash" onclick="deleteTask(${task.row})"></i>
             </li>
           `;
         });
